@@ -49,7 +49,7 @@ local BadList              = {
     ["Jonathan_lopez"] = true, ["Bubbles_TPBS"] = true, ["ZPhate"] = true, ["sadthebad3"] = true,
     ["nolreun"] = true, ["ianvixie"] = true, ["NIcemanss15022010y"] = true, ["Kr_ii"] = true,
     ["FranksaYTLTU"] = true, ["Accord_2007x"] = true, ["crahsxdxd12"] = true, ["Arioch_IV"] = true,
-    ["joepapapo2"] = true, ["raashid45"] = true, ["ray3980"] = true, ["kingslayer1611"] = true,
+    ["joepapapo2"] = true, ["raashid45"] = true, ["Skiddrows"] = true, ["kingslayer1611"] = true,
     ["d3v_nu11"] = true, ["westo_123sss"] = true, ["josiie14568"] = true, ["XXLOLdudeXP"] = true,
     ["cedricmaster12345"] = true, ["Hungry_Hippo20071"] = true, ["jlethal_80"] = true, ["ChocoboNomNom"] = true,
     ["Nickiboysss"] = true, ["KahootSong0912"] = true, ["Omniscientsaiyan"] = true, ["bina1685"] = true,
