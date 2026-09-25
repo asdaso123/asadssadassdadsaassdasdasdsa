@@ -21,7 +21,7 @@ local BlindGuisTable       = { ScreenFog = true, DarknessGui = true, VolleyballS
 local LocalPlayerWhiteList = { LocalPlayer.UserId }
 local WhiteList            = { ["Anndrr1y95"] = true, ["MasterNoob_NMancer"] = true, ["coolbaldi124"] = true }
 local BadList              = {
-    ["Hardboiled_Eggy"] = true, ["1UltimateGamerG"] = true, ["Kdospapaj"] = true, ["7ealous"] = true,
+    ["Hardboiled_eggy"] = true, ["1UltimateGamerG"] = true, ["Kdospapaj"] = true, ["7ealous"] = true,
     ["GrumpyPunch"] = true, ["robloxplayer"] = true, ["CatalogHitlist"] = true, ["Hard_boiledEggy"] = true,
     ["jnterlud"] = true, ["Phacadism"] = true, ["Monochromancies"] = true, ["hinfwehh"] = true,
     ["Pryus_ll"] = true, ["thrien07"] = true, ["Robloxiane4o7u0n6d"] = true, ["Jesus1462"] = true,
@@ -51,7 +51,7 @@ local BadList              = {
     ["FranksaYTLTU"] = true, ["Accord_2007x"] = true, ["crahsxdxd12"] = true, ["Arioch_IV"] = true,
     ["joepapapo2"] = true, ["raashid45"] = true, ["ray3980"] = true, ["kingslayer1611"] = true,
     ["d3v_nu11"] = true, ["westo_123sss"] = true, ["josiie14568"] = true, ["XXLOLdudeXP"] = true,
-    ["cedricmaster12345"] = true, ["XTopiaGames"] = true, ["jlethal_80"] = true, ["ChocoboNomNom"] = true,
+    ["cedricmaster12345"] = true, ["Hungry_Hippo20071"] = true, ["jlethal_80"] = true, ["ChocoboNomNom"] = true,
     ["Nickiboysss"] = true, ["KahootSong0912"] = true, ["Omniscientsaiyan"] = true, ["bina1685"] = true,
     ["Arikohni"] = true, ["yx_doomspire"] = true, ["BliindBandit1"] = true, ["Vencizlav"] = true,
     ["ExVintzed"] = true, ["joshua1dude!SBACK"] = true, ["sir_zelix"] = true, ["FireLynX990"] = true,
