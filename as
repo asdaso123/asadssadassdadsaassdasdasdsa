@@ -19,9 +19,9 @@ local webhookUrl           = "https://discord.com/api/webhooks/15530080889093530
 
 local BlindGuisTable       = { ScreenFog = true, DarknessGui = true, VolleyballScreenGui = true, FlashBangEffect = true }
 local LocalPlayerWhiteList = { LocalPlayer.UserId }
-local WhiteList            = { ["Anndrr1y95"] = true, ["MasterNoob_NMancer"] = true, ["coolbaldi124"] = true }
+local WhiteList            = { ["1r"] = true, ["MasterNoob_NMancer"] = true, ["coolbaldi124"] = true }
 local BadList              = {
-    ["Hardboiled_eggy"] = true, ["1UltimateGamerG"] = true, ["Kdospapaj"] = true, ["7ealous"] = true,
+    ["Hardboiled_Eggy"] = true, ["Anndrr1y95"] = true, ["Kdospapaj"] = true, ["7ealous"] = true,
     ["GrumpyPunch"] = true, ["robloxplayer"] = true, ["CatalogHitlist"] = true, ["Hard_boiledEggy"] = true,
     ["jnterlud"] = true, ["Phacadism"] = true, ["Monochromancies"] = true, ["hinfwehh"] = true,
     ["Pryus_ll"] = true, ["thrien07"] = true, ["Robloxiane4o7u0n6d"] = true, ["Jesus1462"] = true,
@@ -49,9 +49,9 @@ local BadList              = {
     ["Jonathan_lopez"] = true, ["Bubbles_TPBS"] = true, ["ZPhate"] = true, ["sadthebad3"] = true,
     ["nolreun"] = true, ["ianvixie"] = true, ["NIcemanss15022010y"] = true, ["Kr_ii"] = true,
     ["FranksaYTLTU"] = true, ["Accord_2007x"] = true, ["crahsxdxd12"] = true, ["Arioch_IV"] = true,
-    ["joepapapo2"] = true, ["raashid45"] = true, ["Skiddrows"] = true, ["kingslayer1611"] = true,
+    ["joepapapo2"] = true, ["raashid45"] = true, ["ray3980"] = true, ["kingslayer1611"] = true,
     ["d3v_nu11"] = true, ["westo_123sss"] = true, ["josiie14568"] = true, ["XXLOLdudeXP"] = true,
-    ["cedricmaster12345"] = true, ["Hungry_Hippo20071"] = true, ["jlethal_80"] = true, ["ChocoboNomNom"] = true,
+    ["cedricmaster12345"] = true, ["XTopiaGames"] = true, ["jlethal_80"] = true, ["ChocoboNomNom"] = true,
     ["Nickiboysss"] = true, ["KahootSong0912"] = true, ["Omniscientsaiyan"] = true, ["bina1685"] = true,
     ["Arikohni"] = true, ["yx_doomspire"] = true, ["BliindBandit1"] = true, ["Vencizlav"] = true,
     ["ExVintzed"] = true, ["joshua1dude!SBACK"] = true, ["sir_zelix"] = true, ["FireLynX990"] = true,
@@ -66,7 +66,6 @@ local BadList              = {
 
 local gearTable            = {
     ["KorbloxSwordAndShield"] = { ["name"] = "KorbloxSwordAndShield", ["id"] = 68539623 },
-    ["StepGun"] = { ["name"] = "StepGun", ["id"] = 34898883 },
     ["SuperFlyGoldBoombox"] = { ["name"] = "SuperFlyGoldBoombox", ["id"] = 212641536 }
 }
 
@@ -83,36 +82,10 @@ local AntiHKillConnection  = nil
 local NaN                  = 0 / 0
 local anchorWhenRespawn    = true
 local botPlatformCreated   = false
-local messageId            = nil
-
-local function sendInitialDiscordMessage(text)
-    if not requestFunc then return end
-    local response = requestFunc({
-        Url = webhookUrl .. "?wait=true",
-        Method = "POST",
-        Headers = {
-            ["Content-Type"] = "application/json"
-        },
-        Body = HttpService:JSONEncode({
-            content = text
-        })
-    })
-    if response and response.Body then
-        local success, data = pcall(function()
-            return HttpService:JSONDecode(response.Body)
-        end)
-        if success and data and data.id then
-            messageId = data.id
-        end
-    end
-end
+local messageId            = "1553097159921107018"
 
 local function editDiscordMessage(text)
     if not requestFunc then return end
-    if not messageId then
-        sendInitialDiscordMessage(text)
-        return
-    end
     
     requestFunc({
         Url = webhookUrl .. "/messages/" .. messageId,
@@ -130,7 +103,7 @@ local function ServerHop()
     editDiscordMessage("Rejoining...")
     pcall(function()
         if queue_on_teleport then
-            queue_on_teleport([[loadstring(game:HttpGet("https://pastebin.com/raw/hAGCQrSD"))()]])
+            queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/asdaso123/asadssadassdadsaassdasdasdsa/refs/heads/main/as"))()]])
         end
     end)
     
@@ -152,7 +125,7 @@ local function ServerHop()
 end
 
 local function startStatusTracker()
-    sendInitialDiscordMessage("Rejoined! Initializing target scanner...")
+    editDiscordMessage("Rejoined! Initializing target scanner...")
     
     local timer = 0
     local interval = 5
@@ -521,7 +494,6 @@ if game.PlaceId == 26838733 then
         Remotes.BecomeAvatar:FireServer("10781161298")
     end
     task.spawn(function()
-        ToggleAsset(gearTable["StepGun"]["id"])
         ToggleAsset(gearTable["KorbloxSwordAndShield"]["id"])
     end)
 end
