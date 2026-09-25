@@ -302,15 +302,11 @@ local function LegacykorbloxNew()
     local Humanoid = character:FindFirstChild("Humanoid")
     if not Humanoid then return end
 
-    local sword = getOrEquipTool("KorbloxSwordAndShield", gearTable["KorbloxSwordAndShield"]["id"])
-    local beamSword = getOrEquipTool("BeamSword", gearTable["BeamSword"]["id"])
+    local backpack = LocalPlayer:FindFirstChild("Backpack")
+    if not backpack then return end
 
-    if sword and sword.Parent ~= character then
-        sword.Parent = character
-    end
-    if beamSword and beamSword.Parent ~= character then
-        beamSword.Parent = character
-    end
+    local sword = character:FindFirstChild("KorbloxSwordAndShield") or backpack:FindFirstChild("KorbloxSwordAndShield")
+    local beamSword = character:FindFirstChild("BeamSword") or backpack:FindFirstChild("BeamSword")
 
     local swordHandle = sword and sword:FindFirstChild("Handle")
     local beamHandle = beamSword and beamSword:FindFirstChild("Handle")
@@ -348,8 +344,8 @@ local function LegacykorbloxNew()
         end
     end
 
-    if sword then sword:Activate() end
-    if beamSword then beamSword:Activate() end
+    if sword then pcall(function() sword:Activate() end) end
+    if beamSword then pcall(function() beamSword:Activate() end) end
 end
 
 pcall(function()
