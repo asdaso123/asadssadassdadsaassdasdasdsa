@@ -1,6 +1,6 @@
 if game.PlaceId ~= 26838733 then return end
 if Anndrr1y then return end
-pcall(function() getgenv().Anndrr1y = true end)
+getgenv().Anndrr1y = true
 
 local Players              = game:GetService("Players")
 local RunService           = game:GetService("RunService")
@@ -19,10 +19,10 @@ local webhookUrl           = "https://discord.com/api/webhooks/15530080889093530
 
 local BlindGuisTable       = { ScreenFog = true, DarknessGui = true, VolleyballScreenGui = true, FlashBangEffect = true }
 local LocalPlayerWhiteList = { LocalPlayer.UserId }
-local WhiteList            = { ["1r"] = true, ["MasterNoob_NMancer"] = true, ["coolbaldi124"] = true }
+local WhiteList            = { ["1rds"] = true, ["MasterNoob_NMancer"] = true, ["coolbaldi124"] = true }
 local BadList              = {
     ["Hardboiled_Eggy"] = true, ["Anndrr1y95"] = true, ["Kdospapaj"] = true, ["7ealous"] = true,
-    ["GrumpyPunch"] = true, ["robloxplayer"] = true, ["CatalogHitlist"] = true, ["Hard_boiledeggy"] = true,
+    ["GrumpyPunch"] = true, ["robloxplayer"] = true, ["CatalogHitlist"] = true, ["Hard_boiledEggy"] = true,
     ["jnterlud"] = true, ["Phacadism"] = true, ["Monochromancies"] = true, ["hinfwehh"] = true,
     ["Pryus_ll"] = true, ["thrien07"] = true, ["Robloxiane4o7u0n6d"] = true, ["Jesus1462"] = true,
     ["gamercraig4678"] = true, ["gamercraig44"] = true, ["AlexMiskevkiller"] = true, ["vinluscent"] = true,
@@ -66,7 +66,9 @@ local BadList              = {
 
 local gearTable            = {
     ["KorbloxSwordAndShield"] = { ["name"] = "KorbloxSwordAndShield", ["id"] = 68539623 },
-    ["SuperFlyGoldBoombox"] = { ["name"] = "SuperFlyGoldBoombox", ["id"] = 212641536 }
+    ["StepGun"] = { ["name"] = "StepGun", ["id"] = 34898883 },
+    ["SuperFlyGoldBoombox"] = { ["name"] = "SuperFlyGoldBoombox", ["id"] = 212641536 },
+    ["BeamSword"] = { ["name"] = "BeamSword", ["id"] = 92142829 }
 }
 
 local LoopkillList         = {}
@@ -82,10 +84,36 @@ local AntiHKillConnection  = nil
 local NaN                  = 0 / 0
 local anchorWhenRespawn    = true
 local botPlatformCreated   = false
-local messageId            = "1553097159921107018"
+local messageId            = nil
+
+local function sendInitialDiscordMessage(text)
+    if not requestFunc then return end
+    local response = requestFunc({
+        Url = webhookUrl .. "?wait=true",
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = HttpService:JSONEncode({
+            content = text
+        })
+    })
+    if response and response.Body then
+        local success, data = pcall(function()
+            return HttpService:JSONDecode(response.Body)
+        end)
+        if success and data and data.id then
+            messageId = data.id
+        end
+    end
+end
 
 local function editDiscordMessage(text)
     if not requestFunc then return end
+    if not messageId then
+        sendInitialDiscordMessage(text)
+        return
+    end
     
     requestFunc({
         Url = webhookUrl .. "/messages/" .. messageId,
@@ -103,7 +131,7 @@ local function ServerHop()
     editDiscordMessage("Rejoining...")
     pcall(function()
         if queue_on_teleport then
-            queue_on_teleport([[loadstring(game:HttpGet("https://raw.githubusercontent.com/asdaso123/asadssadassdadsaassdasdasdsa/refs/heads/main/as"))()]])
+            queue_on_teleport([[loadstring(game:HttpGet("https://pastebin.com/raw/hAGCQrSD"))()]])
         end
     end)
     
@@ -125,7 +153,7 @@ local function ServerHop()
 end
 
 local function startStatusTracker()
-    editDiscordMessage("Rejoined! Initializing target scanner...")
+    sendInitialDiscordMessage("Rejoined! Initializing target scanner...")
     
     local timer = 0
     local interval = 5
@@ -244,16 +272,6 @@ local function cleanball()
     end
 end
 
-local function cleantouch(character)
-    local tool = character:FindFirstChildOfClass("Tool")
-    if not tool then return end
-    local handle = tool:FindFirstChild("Handle")
-    if not handle then return end
-    local touch = handle:FindFirstChild("TouchInterest")
-    if not touch then return end
-    touch:Destroy()
-end
-
 local function getOrEquipTool(toolName, toolId)
     local char = LocalPlayer.Character
     local backpack = LocalPlayer:FindFirstChild("Backpack")
@@ -285,12 +303,17 @@ local function LegacykorbloxNew()
     if not Humanoid then return end
 
     local sword = getOrEquipTool("KorbloxSwordAndShield", gearTable["KorbloxSwordAndShield"]["id"])
+    local beamSword = getOrEquipTool("BeamSword", gearTable["BeamSword"]["id"])
 
     if sword and sword.Parent ~= character then
         sword.Parent = character
     end
+    if beamSword and beamSword.Parent ~= character then
+        beamSword.Parent = character
+    end
 
     local swordHandle = sword and sword:FindFirstChild("Handle")
+    local beamHandle = beamSword and beamSword:FindFirstChild("Handle")
 
     task.spawn(function() cleanball() end)
 
@@ -313,13 +336,20 @@ local function LegacykorbloxNew()
             continue
         end
 
-        if swordHandle and firetouchinterest then
-            firetouchinterest(swordHandle, targetTorso, 0)
-            firetouchinterest(swordHandle, targetTorso, 1)
+        if firetouchinterest then
+            if swordHandle then
+                firetouchinterest(swordHandle, targetTorso, 0)
+                firetouchinterest(swordHandle, targetTorso, 1)
+            end
+            if beamHandle then
+                firetouchinterest(beamHandle, targetTorso, 0)
+                firetouchinterest(beamHandle, targetTorso, 1)
+            end
         end
     end
 
     if sword then sword:Activate() end
+    if beamSword then beamSword:Activate() end
 end
 
 pcall(function()
@@ -494,7 +524,9 @@ if game.PlaceId == 26838733 then
         Remotes.BecomeAvatar:FireServer("10781161298")
     end
     task.spawn(function()
+        ToggleAsset(gearTable["StepGun"]["id"])
         ToggleAsset(gearTable["KorbloxSwordAndShield"]["id"])
+        ToggleAsset(gearTable["BeamSword"]["id"])
     end)
 end
 
