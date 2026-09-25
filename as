@@ -22,7 +22,7 @@ local LocalPlayerWhiteList = { LocalPlayer.UserId }
 local WhiteList            = { ["1r"] = true, ["MasterNoob_NMancer"] = true, ["coolbaldi124"] = true }
 local BadList              = {
     ["Hardboiled_Eggy"] = true, ["Anndrr1y95"] = true, ["Kdospapaj"] = true, ["7ealous"] = true,
-    ["GrumpyPunch"] = true, ["robloxplayer"] = true, ["CatalogHitlist"] = true, ["Hard_boiledEggy"] = true,
+    ["GrumpyPunch"] = true, ["robloxplayer"] = true, ["CatalogHitlist"] = true, ["Hard_boiledeggy"] = true,
     ["jnterlud"] = true, ["Phacadism"] = true, ["Monochromancies"] = true, ["hinfwehh"] = true,
     ["Pryus_ll"] = true, ["thrien07"] = true, ["Robloxiane4o7u0n6d"] = true, ["Jesus1462"] = true,
     ["gamercraig4678"] = true, ["gamercraig44"] = true, ["AlexMiskevkiller"] = true, ["vinluscent"] = true,
