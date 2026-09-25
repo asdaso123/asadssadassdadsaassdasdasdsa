@@ -308,15 +308,16 @@ local function LegacykorbloxNew()
     
     local character = LocalPlayer.Character
     if not character then return end
+    local Humanoid = character:FindFirstChild("Humanoid")
+    if not Humanoid then return end
 
     local sword = getOrEquipTool("KorbloxSwordAndShield", gearTable["KorbloxSwordAndShield"]["id"])
-    local gun = getOrEquipTool("StepGun", gearTable["StepGun"]["id"])
 
-    if sword and sword.Parent ~= character then sword.Parent = character end
-    if gun and gun.Parent ~= character then gun.Parent = character end
+    if sword and sword.Parent ~= character then
+        sword.Parent = character
+    end
 
     local swordHandle = sword and sword:FindFirstChild("Handle")
-    local gunHandle = gun and gun:FindFirstChild("Handle")
 
     task.spawn(function() cleanball() end)
 
@@ -331,39 +332,21 @@ local function LegacykorbloxNew()
             continue
         end
 
-        local targetHumanoid = char:FindFirstChildOfClass("Humanoid")
+        local targetTorso = char:FindFirstChild("HumanoidRootPart") or char:FindFirstChild("UpperTorso") or char:FindFirstChild("Torso")
+        local targetHumanoid = char:FindFirstChild("Humanoid")
 
-        if not (targetHumanoid and isAlive(targetHumanoid)) then
+        if not (targetTorso and targetHumanoid and isAlive(targetHumanoid)) then
             RemoveFromList(FFkillList, Player)
             continue
         end
 
-        if swordHandle then
-            for _, part in pairs(char:GetChildren()) do
-                if part:IsA("BasePart") then
-                    part.CFrame = swordHandle.CFrame
-                end
-            end
-        end
-
         if swordHandle and firetouchinterest then
-            local targetTorso = char:FindFirstChild("HumanoidRootPart") or char:FindFirstChild("Torso") or char:FindFirstChild("UpperTorso")
-            if targetTorso then
-                firetouchinterest(swordHandle, targetTorso, 0)
-                firetouchinterest(swordHandle, targetTorso, 1)
-            end
-        end
-        if gunHandle and firetouchinterest then
-            local targetTorso = char:FindFirstChild("HumanoidRootPart") or char:FindFirstChild("Torso") or char:FindFirstChild("UpperTorso")
-            if targetTorso then
-                firetouchinterest(gunHandle, targetTorso, 0)
-                firetouchinterest(gunHandle, targetTorso, 1)
-            end
+            firetouchinterest(swordHandle, targetTorso, 0)
+            firetouchinterest(swordHandle, targetTorso, 1)
         end
     end
 
     if sword then sword:Activate() end
-    if gun then gun:Activate() end
 end
 
 pcall(function()
